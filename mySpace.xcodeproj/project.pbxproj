@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		62A6CE512955909E00909C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE502955909E00909C8B /* AppDelegate.swift */; };
 		62A6CE532955909E00909C8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE522955909E00909C8B /* SceneDelegate.swift */; };
-		62A6CE552955909E00909C8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE542955909E00909C8B /* ViewController.swift */; };
-		62A6CE582955909E00909C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62A6CE562955909E00909C8B /* Main.storyboard */; };
+		62A6CE552955909E00909C8B /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE542955909E00909C8B /* NotesViewController.swift */; };
 		62A6CE5A295590A600909C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62A6CE59295590A600909C8B /* Assets.xcassets */; };
 		62A6CE5D295590A600909C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62A6CE5B295590A600909C8B /* LaunchScreen.storyboard */; };
+		62A6CE652955945B00909C8B /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE642955945B00909C8B /* Support.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		62A6CE4D2955909E00909C8B /* mySpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A6CE502955909E00909C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62A6CE522955909E00909C8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		62A6CE542955909E00909C8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		62A6CE572955909E00909C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		62A6CE542955909E00909C8B /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		62A6CE59295590A600909C8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62A6CE5C295590A600909C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62A6CE5E295590A600909C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62A6CE642955945B00909C8B /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +58,8 @@
 			children = (
 				62A6CE502955909E00909C8B /* AppDelegate.swift */,
 				62A6CE522955909E00909C8B /* SceneDelegate.swift */,
-				62A6CE542955909E00909C8B /* ViewController.swift */,
-				62A6CE562955909E00909C8B /* Main.storyboard */,
+				62A6CE542955909E00909C8B /* NotesViewController.swift */,
+				62A6CE642955945B00909C8B /* Support.swift */,
 				62A6CE59295590A600909C8B /* Assets.xcassets */,
 				62A6CE5B295590A600909C8B /* LaunchScreen.storyboard */,
 				62A6CE5E295590A600909C8B /* Info.plist */,
@@ -127,7 +127,6 @@
 			files = (
 				62A6CE5D295590A600909C8B /* LaunchScreen.storyboard in Resources */,
 				62A6CE5A295590A600909C8B /* Assets.xcassets in Resources */,
-				62A6CE582955909E00909C8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62A6CE552955909E00909C8B /* ViewController.swift in Sources */,
+				62A6CE552955909E00909C8B /* NotesViewController.swift in Sources */,
+				62A6CE652955945B00909C8B /* Support.swift in Sources */,
 				62A6CE512955909E00909C8B /* AppDelegate.swift in Sources */,
 				62A6CE532955909E00909C8B /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +147,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		62A6CE562955909E00909C8B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				62A6CE572955909E00909C8B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		62A6CE5B295590A600909C8B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +284,6 @@
 				INFOPLIST_FILE = mySpace/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +311,6 @@
 				INFOPLIST_FILE = mySpace/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
