@@ -10,9 +10,7 @@ import UIKit
 
 class NoteViewController: UIViewController, UITextFieldDelegate {
     
-    var habit: Habit?
-    
- 
+    var note: Note?
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -28,6 +26,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         nameLabel.text = "НАЗВАНИЕ"
+        nameLabel.textColor = .systemGray
         return nameLabel
     }()
     
@@ -36,9 +35,21 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.font = .systemFont(ofSize: 17, weight: .regular)
         nameTextField.textAlignment = .left
-        //nameTextField.textContainer.maximumNumberOfLines = 3
         nameTextField.placeholder = "Сходить в магазин, написать 100 строчек кода и т.п."
         return nameTextField
+    }()
+    
+    let notesTextField: UITextView = {
+        let notesTextField = UITextView()
+        notesTextField.translatesAutoresizingMaskIntoConstraints = false
+        notesTextField.font = .systemFont(ofSize: 17, weight: .regular)
+        notesTextField.textAlignment = .left
+        notesTextField.layer.borderWidth = 0.3
+        notesTextField.layer.borderColor = UIColor.black.cgColor
+        notesTextField.layer.cornerRadius = 10
+        //notesTextField.placeholder = "Список покупок, список дел и т.д."
+        
+        return notesTextField
     }()
     
     
@@ -47,10 +58,12 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         colorLabel.translatesAutoresizingMaskIntoConstraints = false
         colorLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         colorLabel.text = "ЦВЕТ"
+        colorLabel.textColor = .systemGray
+        
         return colorLabel
     }()
     
-    let pickerButton: UIButton = {
+    lazy var pickerButton: UIButton = {
         let pickerButton = UIButton()
         pickerButton.translatesAutoresizingMaskIntoConstraints = false
         pickerButton.layer.cornerRadius = 15
@@ -65,6 +78,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         dateLabel.text = "Дата создания"
+        dateLabel.textColor = .systemGray
         return dateLabel
     }()
     
@@ -72,7 +86,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         let selectDate = UILabel()
         selectDate.translatesAutoresizingMaskIntoConstraints = false
         selectDate.font = .systemFont(ofSize: 17)
-        //selectDate.text = "Сделать "
         return selectDate
     }()
     
@@ -107,31 +120,30 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         return datePicker
     }()
     
-    let deleteHabitButton: UIButton = {
-        let deleteHabitButton = UIButton()
-        deleteHabitButton.translatesAutoresizingMaskIntoConstraints = false
-        deleteHabitButton.setTitle("Удалить заметку", for: .normal)
-        deleteHabitButton.titleLabel?.font = .systemFont(ofSize: 17)
-        deleteHabitButton.setTitleColor(UIColor(red: 1.00, green: 0.23, blue: 0.19, alpha: 1.00), for: .normal)
-        deleteHabitButton.addTarget(self, action: #selector(deleteTap), for: .touchUpInside)
-        return deleteHabitButton
+    lazy var deleteNoteButton: UIButton = {
+        let deleteNoteButton = UIButton()
+        deleteNoteButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteNoteButton.setTitle("Удалить заметку", for: .normal)
+        deleteNoteButton.titleLabel?.font = .systemFont(ofSize: 17)
+        deleteNoteButton.setTitleColor(UIColor(red: 1.00, green: 0.23, blue: 0.19, alpha: 1.00), for: .normal)
+        deleteNoteButton.addTarget(self, action: #selector(deleteTap), for: .touchUpInside)
+        return deleteNoteButton
     }()
     
-    init(_ editHabit: Habit?) {
+    init(_ editNote: Note?) {
         
         super.init(nibName: nil, bundle: nil)
         
-        //modalPresentationStyle = .fullScreen
-        
-        habit = editHabit
-        if let habitSource = habit {
-            date = habitSource.date
-            pickerButton.backgroundColor = habitSource.color
-            nameTextField.text = habitSource.name
-            deleteHabitButton.isHidden = false
+        note = editNote
+        if let noteSource = note {
+            date = noteSource.date
+            pickerButton.backgroundColor = noteSource.color
+            nameTextField.text = noteSource.name
+            notesTextField.text = noteSource.text
+            deleteNoteButton.isHidden = false
             title = "Править"
         } else {
-            deleteHabitButton.isHidden = true
+            deleteNoteButton.isHidden = true
             title = "Создать"
         }
     }
@@ -142,32 +154,24 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveHabit))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(cancelHabit))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveNote))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(cancelNote))
         
         view.backgroundColor = .white
         view.addSubview(scrollView)
-        
-
-        
         scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height)
-        scrollView.addSubviews(nameLabel, nameTextField, colorLabel, pickerButton, dateLabel, selectDate, dateValueLabel, datePicker, deleteHabitButton)
+        scrollView.addSubviews(nameLabel, nameTextField, notesTextField, colorLabel, pickerButton, dateLabel, dateValueLabel, datePicker, deleteNoteButton)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnView))
         view.addGestureRecognizer(tapGesture)
-        
         self.nameTextField.delegate = self
-        
         initialLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-
     }
-    
-   
     
     //MARK: Initial Layout
     func initialLayout() {
@@ -176,17 +180,23 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
                                      scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
                                      scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
                                      
-                                     nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 21),
+                                     nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
                                      nameLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     nameLabel.heightAnchor.constraint(equalToConstant: 18),
-                                     nameLabel.widthAnchor.constraint(equalToConstant: 74),
+                                     nameLabel.heightAnchor.constraint(equalToConstant: 20),
+                                     nameLabel.widthAnchor.constraint(equalToConstant: 125),
                                      
-                                     nameTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 46),
-                                     nameTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 15),
-                                     nameTextField.heightAnchor.constraint(equalToConstant: 75),
-                                     nameTextField.widthAnchor.constraint(equalToConstant: 295),
+                                     nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
+                                     nameTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+                                     nameTextField.heightAnchor.constraint(equalToConstant: 30),
+                                     nameTextField.widthAnchor.constraint(equalToConstant: 176),
                                      
-                                     colorLabel.topAnchor.constraint(equalTo: nameTextField.topAnchor, constant: 83),
+                                     notesTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 24),
+                                     notesTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+                                     notesTextField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+                                     notesTextField.heightAnchor.constraint(equalToConstant: 150),
+                                     
+                                     
+                                     colorLabel.topAnchor.constraint(equalTo: notesTextField.bottomAnchor, constant: 48),
                                      colorLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
                                      colorLabel.heightAnchor.constraint(equalToConstant: 18),
                                      colorLabel.widthAnchor.constraint(equalToConstant: 36),
@@ -198,25 +208,21 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
                                      
                                      dateLabel.topAnchor.constraint(equalTo: pickerButton.topAnchor, constant: 50),
                                      dateLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     dateLabel.heightAnchor.constraint(equalToConstant: 25),
+                                     dateLabel.heightAnchor.constraint(equalToConstant: 16),
                                      dateLabel.widthAnchor.constraint(equalToConstant: 125),
                                      
-                                     selectDate.topAnchor.constraint(equalTo: dateLabel.topAnchor, constant: 25),
-                                     selectDate.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     selectDate.heightAnchor.constraint(equalToConstant: 22),
-                                     
-                                     dateValueLabel.topAnchor.constraint(equalTo: selectDate.topAnchor, constant: 25),
-                                     dateValueLabel.leadingAnchor.constraint(equalTo: selectDate.trailingAnchor),
+                                     dateValueLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor, constant: 25),
+                                     dateValueLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
                                      dateValueLabel.heightAnchor.constraint(equalToConstant: 22),
                                      
-                                     datePicker.topAnchor.constraint(equalTo: dateValueLabel.topAnchor, constant: 50),
+                                     datePicker.topAnchor.constraint(equalTo: dateValueLabel.bottomAnchor, constant: 24),
                                      datePicker.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
                                      datePicker.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
                                      datePicker.heightAnchor.constraint(equalToConstant: 216),
                                      datePicker.widthAnchor.constraint(equalToConstant: scrollView.contentSize.width),
                                      
-                                     deleteHabitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -18),
-                                     deleteHabitButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+                                     deleteNoteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -18),
+                                     deleteNoteButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
                                     ])
     }
     
@@ -245,12 +251,13 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: target save button
-    @objc func saveHabit() {
-        if let myHabit = habit {
-            myHabit.name = nameTextField.text!
-            myHabit.date = date
-            myHabit.color = pickerButton.backgroundColor!
-            HabitsStore.shared.save()
+    @objc func saveNote() {
+        if let myNote = note {
+            myNote.name = nameTextField.text!
+            myNote.date = date
+            myNote.color = pickerButton.backgroundColor!
+            myNote.text = notesTextField.text!
+            NotesStore.shared.save()
             NotesViewController.collectionView.reloadData()
             
             let viewControllers = self.navigationController!.viewControllers
@@ -258,10 +265,10 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
             self.navigationController?.popToViewController(lastTwoVC, animated: true)
             
         } else {
-            let newHabit = Habit(name: nameTextField.text!, date: date, color: pickerButton.backgroundColor!)
-            let store = HabitsStore.shared
-            if !store.habits.contains(newHabit) {
-                store.habits.append(newHabit)
+            let newNote = Note(name: nameTextField.text!, text: notesTextField.text!, date: date, color: pickerButton.backgroundColor!)
+            let store = NotesStore.shared
+            if !store.notes.contains(newNote) {
+                store.notes.append(newNote)
                 NotesViewController.collectionView.reloadData()
             }
         }
@@ -269,20 +276,19 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: target cancel button
-    @objc func cancelHabit() {
+    @objc func cancelNote() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: delete habit in tap UIAlecrController
+    //MARK: delete note in tap UIAlecrController
     @objc func deleteTap() {
         let alertController = UIAlertController(title: "Удалить заметку", message: "Вы хотите удалить заметку \"\(nameTextField.text ?? "Без имени")\"?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { (action) -> Void in
-            if let selfHabit = self.habit {
-                HabitsStore.shared.habits.removeAll(where: {$0 == selfHabit})
+            if let selfNote = self.note {
+                NotesStore.shared.notes.removeAll(where: {$0 == selfNote})
                 NotesViewController.collectionView.reloadData()
             }
-            //HabitDetailsViewController.isDeleted = true
             
             let viewControllers = self.navigationController!.viewControllers
             let lastTwoVC = viewControllers[viewControllers.count - 2]
@@ -294,7 +300,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-//MARK: Extension HabitViewController
+//MARK: Extension NoteViewController
 extension NoteViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         let color = viewController.selectedColor

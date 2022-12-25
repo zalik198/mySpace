@@ -9,7 +9,7 @@ import UIKit
 
 class NotesCollectionViewCell: UICollectionViewCell {
     
-    var habit: Habit?
+    var note: Note?
     
     //MARK: Initial views, labels and buttons
     lazy var nameLabel: UILabel = {
@@ -23,19 +23,10 @@ class NotesCollectionViewCell: UICollectionViewCell {
     lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        dateLabel.textColor = .systemGray2
+        dateLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        dateLabel.textColor = .systemGray
         dateLabel.numberOfLines = 1
         return dateLabel
-    }()
-    
-    lazy var countLabel: UILabel = {
-        let countLabel = UILabel()
-        countLabel.translatesAutoresizingMaskIntoConstraints = false
-        countLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        countLabel.textColor = .systemGray
-        countLabel.numberOfLines = 1
-        return countLabel
     }()
     
     lazy var checkMark: UIButton = {
@@ -51,26 +42,25 @@ class NotesCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 8
-        contentView.addSubviews(nameLabel, dateLabel, countLabel, checkMark)
+        contentView.addSubviews(nameLabel, dateLabel, checkMark)
     }
     
-    //MARK: Initial edit habit on tap habitCollection
-    func initialCell(habit: Habit) {
-        self.habit = habit
-        nameLabel.text = habit.name
-        nameLabel.textColor = habit.color
-        dateLabel.text = habit.dateString
-        countLabel.text = "Счётчик: " + String(habit.trackDates.count)
-        if habit.isAlreadyTakenToday {
-            checkMark.backgroundColor = habit.color
+    //MARK: Initial edit note on tap noteCollection
+    func initialCell(note: Note) {
+        self.note = note
+        nameLabel.text = note.name
+        nameLabel.textColor = note.color
+        dateLabel.text = note.dateString
+        if note.isAlreadyTakenToday {
+            checkMark.backgroundColor = note.color
             checkMark.layer.borderWidth = 1
-            checkMark.layer.borderColor = habit.color.cgColor
+            checkMark.layer.borderColor = note.color.cgColor
             checkMark.setTitle("✓", for: .normal)
             checkMark.isUserInteractionEnabled = false
         } else {
             checkMark.backgroundColor = .white
             checkMark.layer.borderWidth = 1
-            checkMark.layer.borderColor = habit.color.cgColor
+            checkMark.layer.borderColor = note.color.cgColor
             checkMark.backgroundColor = .white
             checkMark.setTitle("", for: .normal)
             checkMark.isUserInteractionEnabled = true
@@ -87,24 +77,21 @@ class NotesCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
                                      nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
                                      
-                                     dateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
-                                     dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                                     
                                      checkMark.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                                      checkMark.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 40),
                                      checkMark.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
                                      checkMark.widthAnchor.constraint(equalToConstant: 38),
                                      checkMark.heightAnchor.constraint(equalToConstant: 38),
                                      
-                                     countLabel.topAnchor.constraint(equalTo: checkMark.bottomAnchor, constant: 9),
-                                     countLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                                     countLabel.trailingAnchor.constraint(equalTo: checkMark.leadingAnchor, constant: 72)
+                                     dateLabel.topAnchor.constraint(equalTo: checkMark.bottomAnchor, constant: 9),
+                                     dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+                                     dateLabel.trailingAnchor.constraint(equalTo: checkMark.leadingAnchor, constant: 72)
                                     ])
     }
     
     @objc func tapCheck() {
-        if let trackHabit = habit {
-            HabitsStore.shared.track(trackHabit)
+        if let trackNote = note {
+            NotesStore.shared.track(trackNote)
             NotesViewController.collectionView.reloadData()
         }
     }

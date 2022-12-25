@@ -1,4 +1,4 @@
-//
+`//
 //  ProgressView.swift
 //  mySpace
 //
@@ -13,7 +13,7 @@ class ProgressViewCell: UICollectionViewCell {
     lazy var progressLabel: UILabel = {
         let progressLabel = UILabel()
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
-        progressLabel.text = "Все получится!"
+        progressLabel.text = "Твой прогресс!"
         progressLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         progressLabel.backgroundColor = .white
         progressLabel.textColor = .systemGray2
@@ -56,8 +56,8 @@ class ProgressViewCell: UICollectionViewCell {
     }
     
     func initialProgress() {
-        progressBar.progress = HabitsStore.shared.todayProgress
-        percentLabel.text = String(Int(HabitsStore.shared.todayProgress * 100)) + "%"
+        progressBar.progress = NotesStore.shared.todayProgress
+        percentLabel.text = String(Int(NotesStore.shared.todayProgress * 100)) + "%"
         initialLayout()
     }
     
@@ -77,3 +77,4 @@ class ProgressViewCell: UICollectionViewCell {
         ])
     }
 }
+`

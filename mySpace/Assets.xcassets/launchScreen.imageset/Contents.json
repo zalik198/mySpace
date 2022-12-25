@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "main_icon-1.png",
+      "filename" : "casey-horner-RmoWqDCqN2E-unsplash-2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "main_icon.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "main_icon-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -3,23 +3,25 @@
 //  mySpace
 //
 //  Created by Shom on 23.12.2022.
-//
 
 import UIKit
 
-/// Класс для хранения данных о привычке.
-public final class Habit: Codable {
+/// Класс для хранения данных о заметке.
+public final class Note: Codable {
     
-    /// Название привычки.
+    /// Название заметки.
     public var name: String
     
-    /// Время выполнения привычки.
+    /// Текст заметки
+    public var text: String
+
+    /// Время выполнения заметки.
     public var date: Date
     
-    /// Даты выполнения привычки.
+    /// Даты выполнения заметки.
     public var trackDates: [Date]
     
-    /// Цвет привычки для выделения в списке.
+    /// Цвет заметки для выделения в списке.
     public var color: UIColor {
         get {
             return .init(red: r, green: g, blue: b, alpha: a)
@@ -37,12 +39,12 @@ public final class Habit: Codable {
         }
     }
     
-    /// Описание времени выполнения привычки.
+    /// Описание времени выполнения заметки.
     public var dateString: String {
         "Дата создания " + dateFormatter.string(from: date)
     }
     
-    /// Показывает, была ли сегодня добавлена привычка.
+    /// Показывает, была ли сегодня добавлена заметка.
     public var isAlreadyTakenToday: Bool {
         guard let lastTrackDate = trackDates.last else {
             return false
@@ -65,10 +67,11 @@ public final class Habit: Codable {
     
     private lazy var calendar: Calendar = .current
     
-    public init(name: String, date: Date, trackDates: [Date] = [], color: UIColor) {
+    public init(name: String, text: String, date: Date, trackDates: [Date] = [], color: UIColor) {
         self.name = name
         self.date = date
         self.trackDates = trackDates
+        self.text = text
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -81,12 +84,13 @@ public final class Habit: Codable {
     }
 }
 
-extension Habit: Equatable {
+extension Note: Equatable {
     
-    public static func == (lhs: Habit, rhs: Habit) -> Bool {
+    public static func == (lhs: Note, rhs: Note) -> Bool {
         lhs.name == rhs.name &&
         lhs.date == rhs.date &&
         lhs.trackDates == rhs.trackDates &&
+        lhs.text == rhs.text &&
         lhs.r == rhs.r &&
         lhs.g == rhs.g &&
         lhs.b == rhs.b &&
@@ -94,14 +98,14 @@ extension Habit: Equatable {
     }
 }
 
-/// Класс для сохранения и изменения привычек пользователя.
-public final class HabitsStore {
+/// Класс для сохранения и изменения заметок пользователя.
+public final class NotesStore {
     
-    /// Синглтон для изменения состояния привычек из разных модулей.
-    public static let shared: HabitsStore = .init()
+    /// Синглтон для изменения состояния заметок из разных модулей.
+    public static let shared: NotesStore = .init()
     
-    /// Список привычек, добавленных пользователем. Добавленные привычки сохраняются в UserDefaults и доступны после перезагрузки приложения.
-    public var habits: [Habit] = [] {
+    /// Список заметок, добавленных пользователем. Добавленные заметки сохраняются в UserDefaults и доступны после перезагрузки приложения.
+    public var notes: [Note] = [] {
         didSet {
             save()
         }
@@ -117,11 +121,11 @@ public final class HabitsStore {
     
     /// Возвращает значение от 0 до 1.
     public var todayProgress: Float {
-        guard habits.isEmpty == false else {
+        guard notes.isEmpty == false else {
             return 0
         }
-        let takenTodayHabits = habits.filter { $0.isAlreadyTakenToday }
-        return Float(takenTodayHabits.count) / Float(habits.count)
+        let takenTodayNotes = notes.filter { $0.isAlreadyTakenToday }
+        return Float(takenTodayNotes.count) / Float(notes.count)
     }
     
     private lazy var userDefaults: UserDefaults = .standard
@@ -143,21 +147,21 @@ public final class HabitsStore {
     
     // MARK: - Lifecycle
     
-    /// Сохраняет все изменения в привычках в UserDefaults.
+    /// Сохраняет все изменения в заметках в UserDefaults.
     public func save() {
         do {
-            let data = try encoder.encode(habits)
-            userDefaults.setValue(data, forKey: "habits")
+            let data = try encoder.encode(notes)
+            userDefaults.setValue(data, forKey: "notes")
         }
         catch {
-            print("Ошибка кодирования привычек для сохранения", error)
+            print("Ошибка кодирования заметок для сохранения", error)
         }
     }
     
-    /// Добавляет текущую дату в trackDates для переданной привычки.
-    /// - Parameter habit: Привычка, в которую добавится новая дата.
-    public func track(_ habit: Habit) {
-        habit.trackDates.append(.init())
+    /// Добавляет текущую дату в trackDates для переданной заметки.
+    /// - Parameter note: Заметка, в которую добавится новая дата.
+    public func track(_ note: Note) {
+        note.trackDates.append(.init())
         save()
     }
     
@@ -170,13 +174,13 @@ public final class HabitsStore {
         return dateFormatter.string(from: dates[index])
     }
     
-    /// Показывает, была ли затрекана привычка в переданную дату.
+    /// Показывает, была ли затрекана заметка в переданную дату.
     /// - Parameters:
-    ///   - habit: Привычка, у которой проверяются затреканные даты.
-    ///   - date: Дата, для которой проверяется, была ли затрекана привычка.
-    /// - Returns: Возвращает true, если привычка была затрекана в переданную дату.
-    public func habit(_ habit: Habit, isTrackedIn date: Date) -> Bool {
-        habit.trackDates.contains { trackDate in
+    ///   - note: Заметка, у которой проверяются затреканные даты.
+    ///   - date: Дата, для которой проверяется, была ли затрекана заметка.
+    /// - Returns: Возвращает true, если заметка была затрекана в переданную дату.
+    public func note(_ note: Note, isTrackedIn date: Date) -> Bool {
+        note.trackDates.contains { trackDate in
             calendar.isDate(date, equalTo: trackDate, toGranularity: .day)
         }
     }
@@ -188,14 +192,14 @@ public final class HabitsStore {
             let startDate = calendar.date(from: calendar.dateComponents([.year, .month, .day], from: Date())) ?? Date()
             userDefaults.setValue(startDate, forKey: "start_date")
         }
-        guard let data = userDefaults.data(forKey: "habits") else {
+        guard let data = userDefaults.data(forKey: "notes") else {
             return
         }
         do {
-            habits = try decoder.decode([Habit].self, from: data)
+            notes = try decoder.decode([Note].self, from: data)
         }
         catch {
-            print("Ошибка декодирования сохранённых привычек", error)
+            print("Ошибка декодирования сохранённых заметок", error)
         }
     }
 }
