@@ -242,6 +242,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     //MARK: tap on view keyboard closed
     @objc func tapOnView() {
         nameTextField.resignFirstResponder()
+        notesTextField.resignFirstResponder()
     }
     
     //MARK: tap keyboard button "done" close keyboard

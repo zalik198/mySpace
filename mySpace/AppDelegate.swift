@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         self.window?.overrideUserInterfaceStyle = .light
 
-        
         return true
     }
     
