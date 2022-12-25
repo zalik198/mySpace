@@ -1,4 +1,4 @@
-`//
+//
 //  ProgressView.swift
 //  mySpace
 //
@@ -77,4 +77,3 @@ class ProgressViewCell: UICollectionViewCell {
         ])
     }
 }
-`
