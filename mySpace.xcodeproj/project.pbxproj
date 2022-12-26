@@ -17,6 +17,7 @@
 		62A6CE6B2955E41900909C8B /* ProgressViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE6A2955E41900909C8B /* ProgressViewCell.swift */; };
 		62A6CE6D2955E4A700909C8B /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE6C2955E4A700909C8B /* NotesCollectionViewCell.swift */; };
 		62A6CE6F2955E71F00909C8B /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE6E2955E71F00909C8B /* NoteViewController.swift */; };
+		62A6CE712959FE9C00909C8B /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE702959FE9C00909C8B /* MainTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		62A6CE6A2955E41900909C8B /* ProgressViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewCell.swift; sourceTree = "<group>"; };
 		62A6CE6C2955E4A700909C8B /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		62A6CE6E2955E71F00909C8B /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		62A6CE702959FE9C00909C8B /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			children = (
 				62A6CE502955909E00909C8B /* AppDelegate.swift */,
 				62A6CE522955909E00909C8B /* SceneDelegate.swift */,
+				62A6CE702959FE9C00909C8B /* MainTabBarViewController.swift */,
 				62A6CE662955DE6400909C8B /* Notes */,
 				62A6CE692955E14200909C8B /* Supports */,
 				62A6CE59295590A600909C8B /* Assets.xcassets */,
@@ -168,6 +171,7 @@
 				62A6CE6F2955E71F00909C8B /* NoteViewController.swift in Sources */,
 				62A6CE552955909E00909C8B /* NotesViewController.swift in Sources */,
 				62A6CE682955E11900909C8B /* NotesStore.swift in Sources */,
+				62A6CE712959FE9C00909C8B /* MainTabBarViewController.swift in Sources */,
 				62A6CE652955945B00909C8B /* Support.swift in Sources */,
 				62A6CE512955909E00909C8B /* AppDelegate.swift in Sources */,
 				62A6CE532955909E00909C8B /* SceneDelegate.swift in Sources */,
