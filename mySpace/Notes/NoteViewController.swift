@@ -7,6 +7,8 @@
 
 
 import UIKit
+import SnapKit
+
 
 class NoteViewController: UIViewController, UITextFieldDelegate {
     
@@ -47,11 +49,8 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         notesTextField.layer.borderWidth = 0.3
         notesTextField.layer.borderColor = UIColor.black.cgColor
         notesTextField.layer.cornerRadius = 10
-        //notesTextField.placeholder = "Список покупок, список дел и т.д."
-        
         return notesTextField
     }()
-    
     
     lazy var colorLabel: UILabel = {
         let colorLabel = UILabel()
@@ -59,7 +58,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         colorLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         colorLabel.text = "ЦВЕТ"
         colorLabel.textColor = .systemGray
-        
         return colorLabel
     }()
     
@@ -175,55 +173,68 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Initial Layout
     func initialLayout() {
-        NSLayoutConstraint.activate([scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                                     scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                                     scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                                     scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                                     
-                                     nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
-                                     nameLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     nameLabel.heightAnchor.constraint(equalToConstant: 20),
-                                     nameLabel.widthAnchor.constraint(equalToConstant: 125),
-                                     
-                                     nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
-                                     nameTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     nameTextField.heightAnchor.constraint(equalToConstant: 30),
-                                     nameTextField.widthAnchor.constraint(equalToConstant: 176),
-                                     
-                                     notesTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 24),
-                                     notesTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     notesTextField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
-                                     notesTextField.heightAnchor.constraint(equalToConstant: 150),
-                                     
-                                     
-                                     colorLabel.topAnchor.constraint(equalTo: notesTextField.bottomAnchor, constant: 48),
-                                     colorLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     colorLabel.heightAnchor.constraint(equalToConstant: 18),
-                                     colorLabel.widthAnchor.constraint(equalToConstant: 36),
-                                     
-                                     pickerButton.topAnchor.constraint(equalTo: colorLabel.topAnchor, constant: 25),
-                                     pickerButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     pickerButton.heightAnchor.constraint(equalToConstant: 30),
-                                     pickerButton.widthAnchor.constraint(equalToConstant: 30),
-                                     
-                                     dateLabel.topAnchor.constraint(equalTo: pickerButton.topAnchor, constant: 50),
-                                     dateLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     dateLabel.heightAnchor.constraint(equalToConstant: 16),
-                                     dateLabel.widthAnchor.constraint(equalToConstant: 125),
-                                     
-                                     dateValueLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor, constant: 25),
-                                     dateValueLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-                                     dateValueLabel.heightAnchor.constraint(equalToConstant: 22),
-                                     
-                                     datePicker.topAnchor.constraint(equalTo: dateValueLabel.bottomAnchor, constant: 24),
-                                     datePicker.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-                                     datePicker.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-                                     datePicker.heightAnchor.constraint(equalToConstant: 216),
-                                     datePicker.widthAnchor.constraint(equalToConstant: scrollView.contentSize.width),
-                                     
-                                     deleteNoteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -18),
-                                     deleteNoteButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
-                                    ])
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.bottom.width.trailing.leading.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.leading.equalTo(scrollView).offset(16)
+            make.width.equalTo(125)
+            make.height.height.equalTo(20)
+        }
+        
+        
+        NSLayoutConstraint.activate([
+            //scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            //                                     scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            //                                     scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            //                                     scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            //
+            //                                     nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
+            //                                     nameLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            //                                     nameLabel.heightAnchor.constraint(equalToConstant: 20),
+            //                                     nameLabel.widthAnchor.constraint(equalToConstant: 125),
+            
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
+            nameTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            nameTextField.heightAnchor.constraint(equalToConstant: 30),
+            nameTextField.widthAnchor.constraint(equalToConstant: 176),
+            
+            notesTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 24),
+            notesTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            notesTextField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+            notesTextField.heightAnchor.constraint(equalToConstant: 150),
+            
+            
+            colorLabel.topAnchor.constraint(equalTo: notesTextField.bottomAnchor, constant: 48),
+            colorLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            colorLabel.heightAnchor.constraint(equalToConstant: 18),
+            colorLabel.widthAnchor.constraint(equalToConstant: 36),
+            
+            pickerButton.topAnchor.constraint(equalTo: colorLabel.topAnchor, constant: 25),
+            pickerButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            pickerButton.heightAnchor.constraint(equalToConstant: 30),
+            pickerButton.widthAnchor.constraint(equalToConstant: 30),
+            
+            dateLabel.topAnchor.constraint(equalTo: pickerButton.topAnchor, constant: 50),
+            dateLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            dateLabel.heightAnchor.constraint(equalToConstant: 16),
+            dateLabel.widthAnchor.constraint(equalToConstant: 125),
+            
+            dateValueLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor, constant: 25),
+            dateValueLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            dateValueLabel.heightAnchor.constraint(equalToConstant: 22),
+            
+            datePicker.topAnchor.constraint(equalTo: dateValueLabel.bottomAnchor, constant: 24),
+            datePicker.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            datePicker.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            datePicker.heightAnchor.constraint(equalToConstant: 216),
+            datePicker.widthAnchor.constraint(equalToConstant: scrollView.contentSize.width),
+            
+            deleteNoteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -18),
+            deleteNoteButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+        ])
     }
     
     //MARK: target image button
@@ -259,7 +270,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
             myNote.color = pickerButton.backgroundColor!
             myNote.text = notesTextField.text!
             NotesStore.shared.save()
-            NotesViewController.collectionView.reloadData()
+            NotesViewController().collectionView.reloadData()
             
             let viewControllers = self.navigationController!.viewControllers
             let lastTwoVC = viewControllers[viewControllers.count - 2]
@@ -270,7 +281,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
             let store = NotesStore.shared
             if !store.notes.contains(newNote) {
                 store.notes.append(newNote)
-                NotesViewController.collectionView.reloadData()
+                NotesViewController().collectionView.reloadData()
             }
         }
         self.navigationController?.popViewController(animated: true)
@@ -288,7 +299,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { (action) -> Void in
             if let selfNote = self.note {
                 NotesStore.shared.notes.removeAll(where: {$0 == selfNote})
-                NotesViewController.collectionView.reloadData()
+                NotesViewController().collectionView.reloadData()
             }
             
             let viewControllers = self.navigationController!.viewControllers

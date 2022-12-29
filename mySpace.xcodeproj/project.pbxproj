@@ -18,6 +18,22 @@
 		62A6CE6D2955E4A700909C8B /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE6C2955E4A700909C8B /* NotesCollectionViewCell.swift */; };
 		62A6CE6F2955E71F00909C8B /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE6E2955E71F00909C8B /* NoteViewController.swift */; };
 		62A6CE712959FE9C00909C8B /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE702959FE9C00909C8B /* MainTabBarViewController.swift */; };
+		62A6CE74295B54BF00909C8B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 62A6CE73295B54BF00909C8B /* SnapKit */; };
+		62A6CE76295B5A7400909C8B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE75295B5A7400909C8B /* NetworkManager.swift */; };
+		62A6CE79295B5A8B00909C8B /* ModelPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE78295B5A8B00909C8B /* ModelPhotos.swift */; };
+		62A6CE7B295B5A9900909C8B /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE7A295B5A9900909C8B /* ImageManager.swift */; };
+		62A6CE7D295B5AA400909C8B /* ConfigureImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE7C295B5AA400909C8B /* ConfigureImage.swift */; };
+		62A6CE7F295B5B1200909C8B /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE7E295B5B1200909C8B /* PhotoViewController.swift */; };
+		62A6CE82295B61DF00909C8B /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE81295B61DF00909C8B /* PhotoCollectionViewCell.swift */; };
+		62A6CE85295E065800909C8B /* PhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE84295E065800909C8B /* PhotoPresenter.swift */; };
+		62A6CE87295E067300909C8B /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE86295E067300909C8B /* PhotoInteractor.swift */; };
+		62A6CE89295E068A00909C8B /* PhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE88295E068A00909C8B /* PhotoRouter.swift */; };
+		62A6CE8B295E06A100909C8B /* PhotoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE8A295E06A100909C8B /* PhotoConfigurator.swift */; };
+		62A6CE91295E076800909C8B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE90295E076800909C8B /* DetailViewController.swift */; };
+		62A6CE93295E078900909C8B /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE92295E078900909C8B /* DetailPresenter.swift */; };
+		62A6CE95295E079E00909C8B /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE94295E079E00909C8B /* DetailInteractor.swift */; };
+		62A6CE97295E07C100909C8B /* DetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE96295E07C100909C8B /* DetailConfigurator.swift */; };
+		62A6CE99295E07DD00909C8B /* DetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE98295E07DD00909C8B /* DetailEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +50,21 @@
 		62A6CE6C2955E4A700909C8B /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		62A6CE6E2955E71F00909C8B /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		62A6CE702959FE9C00909C8B /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		62A6CE75295B5A7400909C8B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		62A6CE78295B5A8B00909C8B /* ModelPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPhotos.swift; sourceTree = "<group>"; };
+		62A6CE7A295B5A9900909C8B /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		62A6CE7C295B5AA400909C8B /* ConfigureImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureImage.swift; sourceTree = "<group>"; };
+		62A6CE7E295B5B1200909C8B /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		62A6CE81295B61DF00909C8B /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		62A6CE84295E065800909C8B /* PhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPresenter.swift; sourceTree = "<group>"; };
+		62A6CE86295E067300909C8B /* PhotoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
+		62A6CE88295E068A00909C8B /* PhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRouter.swift; sourceTree = "<group>"; };
+		62A6CE8A295E06A100909C8B /* PhotoConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoConfigurator.swift; sourceTree = "<group>"; };
+		62A6CE90295E076800909C8B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		62A6CE92295E078900909C8B /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		62A6CE94295E079E00909C8B /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
+		62A6CE96295E07C100909C8B /* DetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailConfigurator.swift; sourceTree = "<group>"; };
+		62A6CE98295E07DD00909C8B /* DetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A6CE74295B54BF00909C8B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +101,8 @@
 				62A6CE502955909E00909C8B /* AppDelegate.swift */,
 				62A6CE522955909E00909C8B /* SceneDelegate.swift */,
 				62A6CE702959FE9C00909C8B /* MainTabBarViewController.swift */,
+				62A6CE77295B5A7800909C8B /* Network */,
+				62A6CE80295B5B2000909C8B /* Photos */,
 				62A6CE662955DE6400909C8B /* Notes */,
 				62A6CE692955E14200909C8B /* Supports */,
 				62A6CE59295590A600909C8B /* Assets.xcassets */,
@@ -98,6 +132,59 @@
 			path = Supports;
 			sourceTree = "<group>";
 		};
+		62A6CE77295B5A7800909C8B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				62A6CE75295B5A7400909C8B /* NetworkManager.swift */,
+				62A6CE78295B5A8B00909C8B /* ModelPhotos.swift */,
+				62A6CE7A295B5A9900909C8B /* ImageManager.swift */,
+				62A6CE7C295B5AA400909C8B /* ConfigureImage.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		62A6CE80295B5B2000909C8B /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				62A6CE8C295E070700909C8B /* PhotoVC */,
+				62A6CE8F295E073A00909C8B /* DetailVC */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		62A6CE83295B61E500909C8B /* PhotoViewConrollerAndCell */ = {
+			isa = PBXGroup;
+			children = (
+				62A6CE7E295B5B1200909C8B /* PhotoViewController.swift */,
+				62A6CE81295B61DF00909C8B /* PhotoCollectionViewCell.swift */,
+			);
+			path = PhotoViewConrollerAndCell;
+			sourceTree = "<group>";
+		};
+		62A6CE8C295E070700909C8B /* PhotoVC */ = {
+			isa = PBXGroup;
+			children = (
+				62A6CE83295B61E500909C8B /* PhotoViewConrollerAndCell */,
+				62A6CE84295E065800909C8B /* PhotoPresenter.swift */,
+				62A6CE86295E067300909C8B /* PhotoInteractor.swift */,
+				62A6CE88295E068A00909C8B /* PhotoRouter.swift */,
+				62A6CE8A295E06A100909C8B /* PhotoConfigurator.swift */,
+			);
+			path = PhotoVC;
+			sourceTree = "<group>";
+		};
+		62A6CE8F295E073A00909C8B /* DetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				62A6CE90295E076800909C8B /* DetailViewController.swift */,
+				62A6CE92295E078900909C8B /* DetailPresenter.swift */,
+				62A6CE94295E079E00909C8B /* DetailInteractor.swift */,
+				62A6CE96295E07C100909C8B /* DetailConfigurator.swift */,
+				62A6CE98295E07DD00909C8B /* DetailEntity.swift */,
+			);
+			path = DetailVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,6 +201,9 @@
 			dependencies = (
 			);
 			name = mySpace;
+			packageProductDependencies = (
+				62A6CE73295B54BF00909C8B /* SnapKit */,
+			);
 			productName = mySpace;
 			productReference = 62A6CE4D2955909E00909C8B /* mySpace.app */;
 			productType = "com.apple.product-type.application";
@@ -142,6 +232,9 @@
 				Base,
 			);
 			mainGroup = 62A6CE442955909E00909C8B;
+			packageReferences = (
+				62A6CE72295B54BF00909C8B /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 62A6CE4E2955909E00909C8B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -169,13 +262,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				62A6CE6F2955E71F00909C8B /* NoteViewController.swift in Sources */,
+				62A6CE95295E079E00909C8B /* DetailInteractor.swift in Sources */,
+				62A6CE85295E065800909C8B /* PhotoPresenter.swift in Sources */,
 				62A6CE552955909E00909C8B /* NotesViewController.swift in Sources */,
+				62A6CE87295E067300909C8B /* PhotoInteractor.swift in Sources */,
+				62A6CE76295B5A7400909C8B /* NetworkManager.swift in Sources */,
+				62A6CE93295E078900909C8B /* DetailPresenter.swift in Sources */,
+				62A6CE89295E068A00909C8B /* PhotoRouter.swift in Sources */,
+				62A6CE7B295B5A9900909C8B /* ImageManager.swift in Sources */,
+				62A6CE91295E076800909C8B /* DetailViewController.swift in Sources */,
+				62A6CE97295E07C100909C8B /* DetailConfigurator.swift in Sources */,
 				62A6CE682955E11900909C8B /* NotesStore.swift in Sources */,
 				62A6CE712959FE9C00909C8B /* MainTabBarViewController.swift in Sources */,
+				62A6CE99295E07DD00909C8B /* DetailEntity.swift in Sources */,
+				62A6CE7D295B5AA400909C8B /* ConfigureImage.swift in Sources */,
 				62A6CE652955945B00909C8B /* Support.swift in Sources */,
 				62A6CE512955909E00909C8B /* AppDelegate.swift in Sources */,
 				62A6CE532955909E00909C8B /* SceneDelegate.swift in Sources */,
 				62A6CE6B2955E41900909C8B /* ProgressViewCell.swift in Sources */,
+				62A6CE82295B61DF00909C8B /* PhotoCollectionViewCell.swift in Sources */,
+				62A6CE7F295B5B1200909C8B /* PhotoViewController.swift in Sources */,
+				62A6CE79295B5A8B00909C8B /* ModelPhotos.swift in Sources */,
+				62A6CE8B295E06A100909C8B /* PhotoConfigurator.swift in Sources */,
 				62A6CE6D2955E4A700909C8B /* NotesCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +494,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		62A6CE72295B54BF00909C8B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		62A6CE73295B54BF00909C8B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62A6CE72295B54BF00909C8B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 62A6CE452955909E00909C8B /* Project object */;
 }

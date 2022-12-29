@@ -15,8 +15,8 @@ class MainTabBarViewController: UITabBarController {
         setupApperance()
         
         viewControllers = [
+            generatedNavControl(rootViewController: PhotoViewController(), title: "Фотографии", image: UIImage(systemName: "photo.on.rectangle")!, selectedImage: UIImage(systemName: "photo.fill.on.rectangle.fill")!),
             generatedNavControl(rootViewController: NotesViewController(), title: "Заметки", image: UIImage(systemName: "list.bullet.clipboard")!, selectedImage: UIImage(systemName: "list.bullet.clipboard.fill")!),
-            //generatedNavControl(rootViewController: ListViewController(), title: "Список дел", image: UIImage(systemName: "list.bullet.circle")!, selectedImage: UIImage(systemName: "list.bullet.circle.fill")!),
             //generatedNavControl(rootViewController: MapViewController(), title: "Карта", image: UIImage(systemName: "map.circle")!, selectedImage: UIImage(systemName: "map.circle.fill")!)
         ]
         
