@@ -24,7 +24,7 @@ class DetailPresenter: DetailViewOutputProtocol {
 extension DetailPresenter: DetailInteractorOutputProtocol {
     func receiveDetail(with data: DetailsData) {
             
-            let author = "Location: \(data.authorName)"
+            let author = "Author: \(data.authorName)"
             let likes = "Likes: \(data.likes)"
             
             self.view.displayLocation(with: data.locationName)
