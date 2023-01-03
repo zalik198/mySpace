@@ -270,7 +270,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
             myNote.color = pickerButton.backgroundColor!
             myNote.text = notesTextField.text!
             NotesStore.shared.save()
-            NotesViewController().collectionView.reloadData()
+            NotesViewController.collectionView.reloadData()
             
             let viewControllers = self.navigationController!.viewControllers
             let lastTwoVC = viewControllers[viewControllers.count - 2]
@@ -281,7 +281,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
             let store = NotesStore.shared
             if !store.notes.contains(newNote) {
                 store.notes.append(newNote)
-                NotesViewController().collectionView.reloadData()
+                NotesViewController.collectionView.reloadData()
             }
         }
         self.navigationController?.popViewController(animated: true)
@@ -299,7 +299,7 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { (action) -> Void in
             if let selfNote = self.note {
                 NotesStore.shared.notes.removeAll(where: {$0 == selfNote})
-                NotesViewController().collectionView.reloadData()
+                NotesViewController.collectionView.reloadData()
             }
             
             let viewControllers = self.navigationController!.viewControllers

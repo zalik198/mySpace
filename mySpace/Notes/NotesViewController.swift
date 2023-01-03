@@ -20,7 +20,7 @@ class NotesViewController: UIViewController {
         return layout
     }()
     
-    let collectionView: UICollectionView = {
+    static let collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.00)
         return collectionView
@@ -31,11 +31,11 @@ class NotesViewController: UIViewController {
         //MARK: add button in tabBar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(buttonTap))
         viewColors()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        view.addSubview(collectionView)
-        collectionView.register(ProgressViewCell.self, forCellWithReuseIdentifier: "noteProgress")
-        collectionView.register(NotesCollectionViewCell.self, forCellWithReuseIdentifier: "noteViewCell")
+        NotesViewController.collectionView.dataSource = self
+        NotesViewController.collectionView.delegate = self
+        view.addSubview(NotesViewController.collectionView)
+        NotesViewController.collectionView.register(ProgressViewCell.self, forCellWithReuseIdentifier: "noteProgress")
+        NotesViewController.collectionView.register(NotesCollectionViewCell.self, forCellWithReuseIdentifier: "noteViewCell")
         initialLayout()
     }
     
@@ -59,7 +59,7 @@ class NotesViewController: UIViewController {
     
     //MARK: Initial layout
     func initialLayout() {
-        collectionView.snp.makeConstraints { make in
+        NotesViewController.collectionView.snp.makeConstraints { make in
             make.top.bottom.width.trailing.leading.equalTo(view.safeAreaLayoutGuide)
         }
     }

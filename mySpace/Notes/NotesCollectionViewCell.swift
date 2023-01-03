@@ -92,7 +92,7 @@ class NotesCollectionViewCell: UICollectionViewCell {
     @objc func tapCheck() {
         if let trackNote = note {
             NotesStore.shared.track(trackNote)
-            NotesViewController().collectionView.reloadData()
+            NotesViewController.collectionView.reloadData()
         }
     }
 }
