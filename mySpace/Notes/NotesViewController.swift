@@ -57,7 +57,7 @@ class NotesViewController: UIViewController {
         view.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 1.00)
     }
     
-    //MARK: Initial layout
+    //MARK: Initial layout SnapKit
     func initialLayout() {
         NotesViewController.collectionView.snp.makeConstraints { make in
             make.top.bottom.width.trailing.leading.equalTo(view.safeAreaLayoutGuide)

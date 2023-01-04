@@ -9,14 +9,12 @@
 import UIKit
 import SnapKit
 
-
 class NoteViewController: UIViewController, UITextFieldDelegate {
     
     var note: Note?
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .white
         scrollView.isScrollEnabled = true
         scrollView.indicatorStyle = .black
@@ -25,7 +23,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         nameLabel.text = "НАЗВАНИЕ"
         nameLabel.textColor = .systemGray
@@ -34,7 +31,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     let nameTextField: UITextField = {
         let nameTextField = UITextField()
-        nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.font = .systemFont(ofSize: 17, weight: .regular)
         nameTextField.textAlignment = .left
         nameTextField.placeholder = "Сходить в магазин, написать 100 строчек кода и т.п."
@@ -43,7 +39,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     let notesTextField: UITextView = {
         let notesTextField = UITextView()
-        notesTextField.translatesAutoresizingMaskIntoConstraints = false
         notesTextField.font = .systemFont(ofSize: 17, weight: .regular)
         notesTextField.textAlignment = .left
         notesTextField.layer.borderWidth = 0.3
@@ -54,7 +49,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     lazy var colorLabel: UILabel = {
         let colorLabel = UILabel()
-        colorLabel.translatesAutoresizingMaskIntoConstraints = false
         colorLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         colorLabel.text = "ЦВЕТ"
         colorLabel.textColor = .systemGray
@@ -63,7 +57,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     lazy var pickerButton: UIButton = {
         let pickerButton = UIButton()
-        pickerButton.translatesAutoresizingMaskIntoConstraints = false
         pickerButton.layer.cornerRadius = 15
         pickerButton.backgroundColor = UIColor(red: 1.00, green: 0.62, blue: 0.31, alpha: 1.00)
         pickerButton.clipsToBounds = true
@@ -73,7 +66,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     let dateLabel: UILabel = {
         let dateLabel = UILabel()
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         dateLabel.text = "Дата создания"
         dateLabel.textColor = .systemGray
@@ -82,7 +74,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     let selectDate: UILabel = {
         let selectDate = UILabel()
-        selectDate.translatesAutoresizingMaskIntoConstraints = false
         selectDate.font = .systemFont(ofSize: 17)
         return selectDate
     }()
@@ -97,7 +88,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     lazy var dateValueLabel: UILabel = {
         let dateValueLabel = UILabel()
-        dateValueLabel.translatesAutoresizingMaskIntoConstraints = false
         dateValueLabel.font = .systemFont(ofSize: 17, weight: .regular)
         dateValueLabel.numberOfLines = 1
         let dateFormat = DateFormatter()
@@ -109,7 +99,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.date = date
         datePicker.datePickerMode = .dateAndTime
         datePicker.locale = Locale(identifier: "ru_RU")
@@ -120,7 +109,6 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
     
     lazy var deleteNoteButton: UIButton = {
         let deleteNoteButton = UIButton()
-        deleteNoteButton.translatesAutoresizingMaskIntoConstraints = false
         deleteNoteButton.setTitle("Удалить заметку", for: .normal)
         deleteNoteButton.titleLabel?.font = .systemFont(ofSize: 17)
         deleteNoteButton.setTitleColor(UIColor(red: 1.00, green: 0.23, blue: 0.19, alpha: 1.00), for: .normal)
@@ -171,70 +159,60 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    //MARK: Initial Layout
+    //MARK: Initial Layout SnapKit
     func initialLayout() {
-        
         scrollView.snp.makeConstraints { make in
             make.top.bottom.width.trailing.leading.equalTo(view.safeAreaLayoutGuide)
         }
-        
         nameLabel.snp.makeConstraints { make in
             make.top.leading.equalTo(scrollView).offset(16)
             make.width.equalTo(125)
             make.height.height.equalTo(20)
         }
-        
-        
-        NSLayoutConstraint.activate([
-            //scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            //                                     scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            //                                     scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            //                                     scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            //
-            //                                     nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
-            //                                     nameLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            //                                     nameLabel.heightAnchor.constraint(equalToConstant: 20),
-            //                                     nameLabel.widthAnchor.constraint(equalToConstant: 125),
-            
-            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
-            nameTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            nameTextField.heightAnchor.constraint(equalToConstant: 30),
-            nameTextField.widthAnchor.constraint(equalToConstant: 176),
-            
-            notesTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 24),
-            notesTextField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            notesTextField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
-            notesTextField.heightAnchor.constraint(equalToConstant: 150),
-            
-            
-            colorLabel.topAnchor.constraint(equalTo: notesTextField.bottomAnchor, constant: 48),
-            colorLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            colorLabel.heightAnchor.constraint(equalToConstant: 18),
-            colorLabel.widthAnchor.constraint(equalToConstant: 36),
-            
-            pickerButton.topAnchor.constraint(equalTo: colorLabel.topAnchor, constant: 25),
-            pickerButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            pickerButton.heightAnchor.constraint(equalToConstant: 30),
-            pickerButton.widthAnchor.constraint(equalToConstant: 30),
-            
-            dateLabel.topAnchor.constraint(equalTo: pickerButton.topAnchor, constant: 50),
-            dateLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            dateLabel.heightAnchor.constraint(equalToConstant: 16),
-            dateLabel.widthAnchor.constraint(equalToConstant: 125),
-            
-            dateValueLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor, constant: 25),
-            dateValueLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
-            dateValueLabel.heightAnchor.constraint(equalToConstant: 22),
-            
-            datePicker.topAnchor.constraint(equalTo: dateValueLabel.bottomAnchor, constant: 24),
-            datePicker.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            datePicker.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            datePicker.heightAnchor.constraint(equalToConstant: 216),
-            datePicker.widthAnchor.constraint(equalToConstant: scrollView.contentSize.width),
-            
-            deleteNoteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -18),
-            deleteNoteButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
-        ])
+        nameTextField.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.leading.equalTo(scrollView).offset(16)
+            make.height.equalTo(30)
+            make.width.equalTo(250)
+        }
+        notesTextField.snp.makeConstraints { make in
+            make.top.equalTo(nameTextField.snp.bottom).offset(16)
+            make.leading.equalTo(scrollView).offset(16)
+            make.trailing.equalTo(scrollView).inset(16)
+            make.height.equalTo(150)
+        }
+        colorLabel.snp.makeConstraints { make in
+            make.top.equalTo(notesTextField.snp.bottom).offset(36)
+            make.leading.equalTo(scrollView).offset(16)
+            make.height.equalTo(18)
+            make.width.equalTo(36)
+        }
+        pickerButton.snp.makeConstraints { make in
+            make.top.equalTo(colorLabel.snp.bottom).offset(8)
+            make.leading.equalTo(scrollView).offset(16)
+            make.height.width.equalTo(30)
+        }
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(pickerButton.snp.bottom).offset(24)
+            make.leading.equalTo(scrollView).offset(16)
+            make.height.equalTo(16)
+            make.width.equalTo(125)
+        }
+        dateValueLabel.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(8)
+            make.leading.equalTo(scrollView).offset(16)
+            make.height.equalTo(24)
+        }
+        datePicker.snp.makeConstraints { make in
+            make.top.equalTo(dateValueLabel).offset(16)
+            make.leading.trailing.equalTo(scrollView)
+            make.height.equalTo(216)
+            make.width.equalTo(scrollView.contentSize.width)
+        }
+        deleteNoteButton.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(18)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     //MARK: target image button

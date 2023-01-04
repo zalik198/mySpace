@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProgressViewCell: UICollectionViewCell {
     
     //MARK: Initial views, labels and buttons
     lazy var progressLabel: UILabel = {
         let progressLabel = UILabel()
-        progressLabel.translatesAutoresizingMaskIntoConstraints = false
         progressLabel.text = "Твой прогресс!"
         progressLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         progressLabel.backgroundColor = .white
@@ -23,7 +23,6 @@ class ProgressViewCell: UICollectionViewCell {
     
     lazy var percentLabel: UILabel = {
         let percentLabel = UILabel()
-        percentLabel.translatesAutoresizingMaskIntoConstraints = false
         percentLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         percentLabel.backgroundColor = .white
         percentLabel.textColor = .systemGray2
@@ -33,7 +32,6 @@ class ProgressViewCell: UICollectionViewCell {
     
     lazy var progressBar: UIProgressView = {
         let progressBar = UIProgressView(progressViewStyle: .bar )
-        progressBar.translatesAutoresizingMaskIntoConstraints = false
         progressBar.trackTintColor = .systemGray2
         progressBar.progressTintColor = constPurpleColor
         progressBar.backgroundColor = .white
@@ -61,19 +59,23 @@ class ProgressViewCell: UICollectionViewCell {
         initialLayout()
     }
     
-    //MARK: Initial layout
+    //MARK: Initial layout SnapKit
     func initialLayout() {
-        NSLayoutConstraint.activate([
-            progressLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            progressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            percentLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            percentLabel.leadingAnchor.constraint(equalTo: progressLabel.trailingAnchor, constant: 16),
-            percentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            progressBar.topAnchor.constraint(equalTo: progressLabel.bottomAnchor, constant: 8),
-            progressBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            progressBar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            progressBar.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            progressBar.heightAnchor.constraint(equalToConstant: 7)
-        ])
+        progressLabel.snp.makeConstraints { make in
+            make.top.leading.equalTo(contentView).offset(16)
+        }
+        percentLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView).offset(16)
+            make.leading.equalTo(progressLabel.snp.trailing).offset(16)
+            make.trailing.equalTo(contentView).inset(16)
+        }
+        progressBar.snp.makeConstraints { make in
+            make.top.equalTo(progressBar.snp.bottom).offset(8)
+            make.leading.equalTo(contentView).offset(16)
+            make.trailing.equalTo(contentView).inset(16)
+            make.bottom.equalTo(contentView).inset(16)
+            make.height.equalTo(7)
+        }
+        
     }
 }

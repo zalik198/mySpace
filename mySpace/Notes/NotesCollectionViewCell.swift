@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class NotesCollectionViewCell: UICollectionViewCell {
     
@@ -14,15 +15,20 @@ class NotesCollectionViewCell: UICollectionViewCell {
     //MARK: Initial views, labels and buttons
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        nameLabel.numberOfLines = 0
+        nameLabel.numberOfLines = 1
         return nameLabel
+    }()
+    
+    lazy var textLabel: UILabel = {
+        let textLabel = UILabel()
+        textLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        textLabel.numberOfLines = 2
+        return textLabel
     }()
     
     lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         dateLabel.textColor = .systemGray
         dateLabel.numberOfLines = 1
@@ -31,7 +37,6 @@ class NotesCollectionViewCell: UICollectionViewCell {
     
     lazy var checkMark: UIButton = {
         let checkMark = UIButton()
-        checkMark.translatesAutoresizingMaskIntoConstraints = false
         checkMark.layer.cornerRadius = 19
         checkMark.setTitleColor(.white, for: .normal)
         checkMark.addTarget(self, action: #selector(tapCheck), for: .touchUpInside)
@@ -42,13 +47,14 @@ class NotesCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 8
-        contentView.addSubviews(nameLabel, dateLabel, checkMark)
+        contentView.addSubviews(nameLabel, textLabel, dateLabel, checkMark)
     }
     
     //MARK: Initial edit note on tap noteCollection
     func initialCell(note: Note) {
         self.note = note
         nameLabel.text = note.name
+        textLabel.text = note.text
         nameLabel.textColor = note.color
         dateLabel.text = note.dateString
         if note.isAlreadyTakenToday {
@@ -74,19 +80,27 @@ class NotesCollectionViewCell: UICollectionViewCell {
     
     //MARK: Initial layout
     func initialLayout() {
-        NSLayoutConstraint.activate([nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-                                     nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                                     
-                                     checkMark.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-                                     checkMark.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 40),
-                                     checkMark.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
-                                     checkMark.widthAnchor.constraint(equalToConstant: 38),
-                                     checkMark.heightAnchor.constraint(equalToConstant: 38),
-                                     
-                                     dateLabel.topAnchor.constraint(equalTo: checkMark.bottomAnchor, constant: 9),
-                                     dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                                     dateLabel.trailingAnchor.constraint(equalTo: checkMark.leadingAnchor, constant: 72)
-                                    ])
+        nameLabel.snp.makeConstraints { make in
+            make.top.leading.equalTo(contentView).offset(16)
+            make.width.equalTo(215)
+        }
+        textLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(16)
+            make.leading.equalTo(contentView).offset(20)
+            make.width.equalTo(215)
+            
+        }
+        checkMark.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView)
+            make.leading.equalTo(textLabel.snp.trailing).offset(40)
+            make.trailing.equalTo(contentView).inset(26)
+            make.height.width.equalTo(38)
+        }
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(textLabel.snp.bottom).offset(16)
+            make.leading.equalTo(contentView).offset(20)
+            //make.trailing.equalTo(checkMark.snp.leading).offset(72)
+        }
     }
     
     @objc func tapCheck() {

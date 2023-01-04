@@ -34,7 +34,6 @@ class PhotoViewController: UIViewController {
         layout.minimumLineSpacing = 8
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        layout.collectionView?.translatesAutoresizingMaskIntoConstraints = false
         return layout
     }()
     
@@ -53,7 +52,7 @@ class PhotoViewController: UIViewController {
         initialLayout()
     }
     
-    // MARK: Initial constraints
+    // MARK: Initial layout SnapKit
     func initialLayout() {
         collectionView.snp.makeConstraints { make in
             make.top.bottom.width.trailing.leading.equalTo(view.safeAreaLayoutGuide)
