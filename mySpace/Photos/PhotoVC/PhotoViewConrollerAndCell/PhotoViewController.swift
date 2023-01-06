@@ -63,9 +63,10 @@ class PhotoViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.title = "Фотографии"
         self.view.backgroundColor = .white
-        networkManager.fetchPhotos()
+        networkManager.fetchPhotos(collection: "car")
         view.addSubviews(collectionView)
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.id)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Коллекции", style: .done, target: self, action: #selector(selectPhotoCollection))
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.collectionView.reloadData()
         }
@@ -74,10 +75,57 @@ class PhotoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    @objc func selectPhotoCollection() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Автомобили", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
+            self.networkManager.fetchPhotos(collection: "car")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.collectionView.reloadData()
+            }
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Спорт", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
+            self.networkManager.fetchPhotos(collection: "sport")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.collectionView.reloadData()
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Бизнесс", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
+            self.networkManager.fetchPhotos(collection: "business")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.collectionView.reloadData()
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Животные", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
+            self.networkManager.fetchPhotos(collection: "animals")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.collectionView.reloadData()
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Растения", style: UIAlertAction.Style.default, handler: { (alert:UIAlertAction!) -> Void in
+            self.networkManager.fetchPhotos(collection: "plants")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8){
+                self.collectionView.reloadData()
+            }
+        }))
+        
+        
+        
+        
+        
+        actionSheet.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }
 

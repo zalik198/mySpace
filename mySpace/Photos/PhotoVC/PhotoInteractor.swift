@@ -22,6 +22,6 @@ class PhotoInteractor: PhotoInteractorInputProtocol {
     }
     
     func fetchPhoto() {
-        NetworkManager.shared.fetchPhotos()
+        NetworkManager.shared.fetchPhotos(collection: "")
     }
 }

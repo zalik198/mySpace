@@ -127,9 +127,11 @@ class NoteViewController: UIViewController, UITextFieldDelegate {
             nameTextField.text = noteSource.name
             notesTextField.text = noteSource.text
             deleteNoteButton.isHidden = false
+            datePicker.isHidden = true
             title = "Править"
         } else {
             deleteNoteButton.isHidden = true
+            datePicker.isHidden = false
             title = "Создать"
         }
     }

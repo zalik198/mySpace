@@ -34,6 +34,7 @@
 		62A6CE95295E079E00909C8B /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE94295E079E00909C8B /* DetailInteractor.swift */; };
 		62A6CE97295E07C100909C8B /* DetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE96295E07C100909C8B /* DetailConfigurator.swift */; };
 		62A6CE99295E07DD00909C8B /* DetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6CE98295E07DD00909C8B /* DetailEntity.swift */; };
+		62DBA7E82966F2FF00362287 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBA7E72966F2FF00362287 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		62A6CE94295E079E00909C8B /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		62A6CE96295E07C100909C8B /* DetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailConfigurator.swift; sourceTree = "<group>"; };
 		62A6CE98295E07DD00909C8B /* DetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntity.swift; sourceTree = "<group>"; };
+		62DBA7E72966F2FF00362287 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				62A6CE77295B5A7800909C8B /* Network */,
 				62A6CE80295B5B2000909C8B /* Photos */,
 				62A6CE662955DE6400909C8B /* Notes */,
+				62DBA7E92966F30B00362287 /* Map */,
 				62A6CE692955E14200909C8B /* Supports */,
 				62A6CE59295590A600909C8B /* Assets.xcassets */,
 				62A6CE5B295590A600909C8B /* LaunchScreen.storyboard */,
@@ -183,6 +186,14 @@
 				62A6CE98295E07DD00909C8B /* DetailEntity.swift */,
 			);
 			path = DetailVC;
+			sourceTree = "<group>";
+		};
+		62DBA7E92966F30B00362287 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				62DBA7E72966F2FF00362287 /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +280,7 @@
 				62A6CE76295B5A7400909C8B /* NetworkManager.swift in Sources */,
 				62A6CE93295E078900909C8B /* DetailPresenter.swift in Sources */,
 				62A6CE89295E068A00909C8B /* PhotoRouter.swift in Sources */,
+				62DBA7E82966F2FF00362287 /* MapViewController.swift in Sources */,
 				62A6CE7B295B5A9900909C8B /* ImageManager.swift in Sources */,
 				62A6CE91295E076800909C8B /* DetailViewController.swift in Sources */,
 				62A6CE97295E07C100909C8B /* DetailConfigurator.swift in Sources */,
@@ -426,6 +438,10 @@
 				DEVELOPMENT_TEAM = W5WVZM4M3W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mySpace/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location is used";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Location is used";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Location is used";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location is used";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -454,6 +470,10 @@
 				DEVELOPMENT_TEAM = W5WVZM4M3W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mySpace/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location is used";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Location is used";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Location is used";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location is used";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
